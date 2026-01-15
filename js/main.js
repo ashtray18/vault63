@@ -210,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- AI Assistant Chatbot ---
     const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotWidget = document.getElementById('chatbot-widget');
-    const chatbotMinimize = document.getElementById('chatbot-minimize');
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotSend = document.getElementById('chatbot-send');
     const chatbotMessages = document.getElementById('chatbot-messages');
@@ -350,16 +349,10 @@ Keep responses concise, friendly, and helpful. If asked about NP, provide accura
     }
 
     chatbotToggle.addEventListener('click', () => {
-        chatbotWidget.classList.toggle('hidden');
-        chatbotToggle.classList.toggle('hidden');
-        if (!chatbotWidget.classList.contains('hidden')) {
+        chatbotWidget.classList.toggle('collapsed');
+        if (!chatbotWidget.classList.contains('collapsed')) {
             chatbotInput.focus();
         }
-    });
-
-    chatbotMinimize.addEventListener('click', () => {
-        chatbotWidget.classList.add('hidden');
-        chatbotToggle.classList.remove('hidden');
     });
 
     chatbotSend.addEventListener('click', handleChatSubmit);
