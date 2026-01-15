@@ -1,1 +1,90 @@
+:root{
+  --pace: 200ms;
+  --accent: #0b6efd;
+  --bg: #ffffff;
+  --text: #222;
+  --muted: #666;
+  --container-padding: 16px;
+  --max-width: 1200px;
+}
 
+/* Basic mobile-first defaults */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+.container{padding-inline:var(--container-padding);max-width:var(--max-width);margin:0 auto}
+
+/* Header / nav */
+#main-header .container{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:40px;width:auto}
+#main-nav{position:relative}
+#main-nav ul{display:flex;gap:10px;list-style:none;padding:0;margin:0;align-items:center}
+#main-nav a{display:block;padding:8px 10px;color:var(--text);text-decoration:none;font-weight:500}
+
+/* Mobile hamburger */
+#mobile-menu-toggle{display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:8px;cursor:pointer}
+#mobile-menu-toggle .bar{display:block;width:22px;height:2px;background:var(--text);margin:3px 0;transition:transform var(--pace) ease}
+#main-nav.collapsed{display:none}
+
+/* Make nav accessible when open */
+#main-nav.open{display:block;position:absolute;right:0;top:60px;background:var(--bg);box-shadow:0 6px 18px rgba(0,0,0,.08);padding:12px;border-radius:8px;width:calc(100vw - 32px);max-width:320px}
+#main-nav.open ul{flex-direction:column}
+
+/* Hero */
+#hero{position:relative;overflow:hidden;padding-bottom:28px}
+.hero-background-image{width:100%;height:auto;display:block;object-fit:cover}
+#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:none} /* start hidden on mobile for perf */
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45));z-index:1}
+.hero-content{position:relative;z-index:2;padding:28px 0;color:#fff}
+.hero-stats{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.stat-item{min-width:0;flex:1 1 30%;background:rgba(255,255,255,0.08);padding:8px 10px;border-radius:8px;text-align:center}
+
+/* Gallery grid responsive */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.gallery-item img{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block}
+
+/* VR iframes responsive wrapper */
+.embed-responsive{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px}
+.embed-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* Timeline, cards & stories */
+.v-timeline-container{display:flex;flex-direction:column;gap:12px}
+.v-timeline-content.card{padding:12px;border-radius:10px;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+.story-card blockquote{margin:0 0 8px 0;font-style:italic;color:var(--text)}
+
+/* Modals full-screen friendly */
+.modal{display:none;position:fixed;inset:0;z-index:1200;align-items:center;justify-content:center;padding:16px}
+.modal[aria-hidden="false"], .modal.open{display:flex}
+.modal-content{max-width:820px;width:100%;background:#fff;border-radius:10px;padding:16px;overflow:auto;max-height:90vh}
+.modal .close-button{position:absolute;right:18px;top:18px;background:transparent;border:0;font-size:24px;line-height:1;cursor:pointer}
+
+/* Footer responsive */
+.footer-grid{display:grid;grid-template-columns:1fr;gap:16px;padding-block:18px}
+.footer-bottom{text-align:center;padding-block:8px;font-size:14px;color:var(--muted)}
+
+/* Increase tappable size for buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:8px;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff;border:0}
+.btn-secondary{background:#f2f4f8;color:var(--text);border:0}
+
+/* Small screens tweaks */
+@media (min-width:600px){
+  #mobile-menu-toggle{display:none}
+  #main-nav{display:block}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-content{padding:48px 0}
+  #hero-video{display:block} /* show video for medium+ */
+  .hero-background-image{display:none}
+}
+
+/* Larger screens */
+@media (min-width:900px){
+  .container{padding-inline:24px}
+  .footer-grid{grid-template-columns:repeat(4,1fr)}
+  .hero-content{padding:72px 0}
+  .gallery-grid{gap:14px}
+  .stat-item{flex:1}
+}
+
+/* Accessibility focus */
+a:focus, button:focus, .v-timeline-content:focus{outline:3px solid rgba(11,110,253,0.18);outline-offset:3px}
