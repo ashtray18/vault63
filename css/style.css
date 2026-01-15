@@ -396,8 +396,10 @@ section { padding: 6rem 0; }
     .hero-content p { font-size: 1rem; }
     .hero-stats { 
         gap: 1.5rem;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-around;
     }
+    .stat-item { flex: 1; min-width: 120px; }
     .stat-item h3 { font-size: 2.2rem; }
 
     /* Timeline */
@@ -470,6 +472,9 @@ section { padding: 6rem 0; }
     .hero-content p { 
         font-size: 0.9rem;
         margin: 0.75rem auto 1.5rem;
+    }
+    .hero-stats {
+        gap: 1rem;
     }
     .stat-item h3 { font-size: 1.8rem; }
     .stat-item p { font-size: 0.85rem; }
